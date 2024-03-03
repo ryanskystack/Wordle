@@ -17,3 +17,13 @@ The first step is establish a frame Django, and build two endpoints:
 
 For test,
 python manage.py test
+
+## Frontend:
+1. npm i
+2. npm start
+
+TBC:
+1. Test for the frontend
+2. There are still some frontend bugs
+3. The color of the keys of keyboard needs to be marked if some letters are correct
+4. There are no user accounts and the admin account
