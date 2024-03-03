@@ -4,7 +4,7 @@ Gameboard - A 2-dimentional plane that holds the tiles of the game.
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { api } from "../utils/api";
-import { initWord, setWin, setNotifyOpen } from "../store";
+import { initWord, setWin, setNotify, resetNotify } from "../store";
 // import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
@@ -32,13 +32,13 @@ const BoardStyle = {
 };
 
 const GameBoard = (props) => {
+  const dispatch = useDispatch();
   const values = useSelector((state) => state.guess);
   const tryNum = useSelector((state) => state.tryNumber);
-  const dispatch = useDispatch();
   const target = useSelector((state) => state.word);
-  const notification = useSelector((state) => state.notification);
+  const { message, open } = useSelector((state) => state.notify);
+
   const count = useSelector((state) => state.count);
-  const [open, setOpen] = useState(false);
   const [showButton, setShowButton] = useState("none");
   // console.log('win: ', win) // debug
   // console.log('notification: ', notification) // debug
@@ -77,7 +77,8 @@ const GameBoard = (props) => {
 
       // If the guess is not in the right format
       if (!feedback) {
-        setNotifyOpen(dispatch, "Not a 5 letter word", setOpen);
+        dispatch(setNotify({ message: "Not a 5 letter word", open: false }));
+        dispatch(resetNotify());
         return;
       }
 
@@ -86,18 +87,20 @@ const GameBoard = (props) => {
 
       // User has win the game
       if (feedback.join("") === "ggggg") {
-        setWin(dispatch, true);
-        setNotifyOpen(dispatch, "Excellent", setOpen);
-        // resetGame(dispatch)
+        setWin();
+        dispatch(setNotify({ message: "Excellent", open: true }));
         setTimeout(() => {
+          dispatch(resetNotify());
           setShowButton("");
         }, 1000);
       }
       // used up all the guesses, user loses.
       else if (tryNum === 5) {
-        setNotifyOpen(dispatch, "You have used all guesses", setOpen);
-        // resetGame(dispatch)
+        dispatch(
+          setNotify({ message: "You have used all guesses", open: false })
+        );
         setTimeout(() => {
+          dispatch(resetNotify());
           setShowButton("");
         }, 1000);
       }
@@ -118,7 +121,7 @@ const GameBoard = (props) => {
         key="notification"
         open={open}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        message={notification}
+        message={message}
       />
 
       <Grid container sx={{ justifyContent: "center", display: showButton }}>
@@ -135,7 +138,6 @@ const GameBoard = (props) => {
       <InputRow values={values[3]} idStart={15} />
       <InputRow values={values[4]} idStart={20} />
       <InputRow values={values[5]} idStart={25} />
-      {/* <button onClick={testFlip}> Flip </button> */}
     </Grid>
   );
 };

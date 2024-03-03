@@ -4,7 +4,7 @@ export {
   setWin,
   resetWin,
   setNotify,
-  setNotifyOpen,
+  resetNotify,
   addTry,
   resetTry,
   addGuess,

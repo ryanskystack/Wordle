@@ -1,8 +1,9 @@
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { api } from "../utils/api";
-import { distributeGuessesToRows } from "../utils/helpers";
+import { distributeGuessesToRows, resetGameBoardColor } from "../utils/helpers";
 import {
   updateCandidate,
   resetCandidate,
@@ -13,6 +14,12 @@ import {
 const generateQueryData = (guesses, info) => {
   // console.log('guesses: ', guesses) // debug
   // console.log('info: ', info) // debug
+  if (!guesses || !info) {
+    return [];
+  }
+  if (guesses.length !== 25) {
+    return [];
+  }
   const guessList = distributeGuessesToRows(guesses);
 
   const result = [];
@@ -34,6 +41,8 @@ const ButtonGroup = (props) => {
   const guesses = useSelector((state) => state.guesses);
   const info = useSelector((state) => state.info);
   const dispatch = useDispatch();
+  const [candidate, setCandidate] = useState("");
+  const [showCandidate, setShowCandidate] = useState(false);
 
   const style = {
     justifyContent: "space-between",
@@ -56,6 +65,8 @@ const ButtonGroup = (props) => {
         }
         if (response.status === 200) {
           dispatch(updateCandidate(response.data));
+          setCandidate(response.data);
+          setShowCandidate(true);
         }
       })
       .catch((error) => {
@@ -66,29 +77,35 @@ const ButtonGroup = (props) => {
 
   const resetHandler = (event) => {
     event.preventDefault();
-    // use redux dispatch to reset the states
     dispatch(resetCandidate());
-    dispatch(resetTry());
-    dispatch(resetGuess());
+    setShowCandidate(false);
+    setCandidate("");
   };
 
   return (
-    <div style={{ margin: "0 auto" }}>
-      <Grid container style={style}>
-        <Grid item xs={6} sm={6}>
-          <Button variant="outlined" onClick={analyzeHandler}>
-            {" "}
-            Analyze{" "}
-          </Button>
+    <>
+      <div style={{ margin: "0 auto" }}>
+        <Grid container style={style}>
+          <Grid item xs={6} sm={6}>
+            <Button variant="outlined" onClick={analyzeHandler}>
+              {" "}
+              Analyze{" "}
+            </Button>
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <Button variant="outlined" onClick={resetHandler}>
+              {" "}
+              Stop Analyzing{" "}
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={6} sm={6}>
-          <Button variant="outlined" onClick={resetHandler}>
-            {" "}
-            Reset{" "}
-          </Button>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+      {showCandidate && (
+        <div>
+          <p> {candidate} </p>
+        </div>
+      )}
+    </>
   );
 };
 

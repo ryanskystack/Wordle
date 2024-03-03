@@ -58,7 +58,10 @@ export const resetGame = (dispatch) => {
   dispatch(resetWin());
   dispatch(resetGuess());
   dispatch(resetTry());
+  resetGameBoardColor();
+};
 
+export const resetGameBoardColor = () => {
   // Flip back all the boxes
   for (let i = 0; i < 5 * 6; i++) {
     let container = document.getElementById(i);

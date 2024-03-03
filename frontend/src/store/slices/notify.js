@@ -6,26 +6,16 @@ const notifySlice = createSlice({
   initialState: { message: "", open: false },
   reducers: {
     setNotify: (state, action) => {
-      state.message = action.payload;
+      state.message = action.payload.message;
+      state.open = action.payload.open;
     },
-    setNotifyOpen: (state, action) => {
-      state.open = action.payload;
+    resetNotify: (state, action) => {
+      state.message = "";
+      state.open = false;
     },
   },
 });
 
-export const setNotification =
-  (text, timeout = 3000) =>
-  (dispatch) => {
-    dispatch(notifySlice.actions.setNotify(text));
-    setTimeout(() => {
-      dispatch(notifySlice.actions.setNotifyOpen(true));
-    }, 500);
-    setTimeout(() => {
-      dispatch(notifySlice.actions.setNotifyOpen(false));
-    }, timeout + 500);
-  };
-
-export const { setNotify, setNotifyOpen } = notifySlice.actions;
+export const { setNotify, resetNotify } = notifySlice.actions;
 
 export default notifySlice.reducer;

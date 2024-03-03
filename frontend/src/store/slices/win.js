@@ -5,7 +5,7 @@ const winSlice = createSlice({
   name: "win",
   initialState: false,
   reducers: {
-    setWin: (state, action) => action.payload,
+    setWin: () => true,
     resetWin: () => false,
   },
 });
