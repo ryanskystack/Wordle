@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { api } from "../utils/api";
 import { initWord, setWin, setNotify, resetNotify } from "../store";
-// import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
 import {
@@ -14,7 +13,6 @@ import {
   handleSubmit,
   useEventHandler,
 } from "../utils/helpers";
-// import Keyboard from "./keyboard";
 import InputRow from "./input-row";
 import Grid from "@mui/material/Grid";
 

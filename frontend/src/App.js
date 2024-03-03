@@ -1,14 +1,11 @@
 import { Provider } from "react-redux";
-import { store, persistGate } from "./store";
-import { PersistGate } from "redux-persist/integration/react";
+import { store } from "./store";
 import { Main } from "./component/main";
 import "./App.css";
 
 const App = () => (
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistGate}>
-      <Main />
-    </PersistGate>
+    <Main />
   </Provider>
 );
 export default App;

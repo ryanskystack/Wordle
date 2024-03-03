@@ -3,13 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { api } from "../utils/api";
-import { distributeGuessesToRows, resetGameBoardColor } from "../utils/helpers";
-import {
-  updateCandidate,
-  resetCandidate,
-  resetTry,
-  resetGuess,
-} from "../store";
+import { distributeGuessesToRows } from "../utils/helpers";
+import { updateCandidate, resetCandidate } from "../store";
 
 const generateQueryData = (guesses, info) => {
   // console.log('guesses: ', guesses) // debug
@@ -53,8 +48,6 @@ const ButtonGroup = (props) => {
     const payload = {
       data: queryData,
     };
-    // axios.defaults.headers.post["Content-Type"] = "application/json";
-    // axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
     api
       .post("guess", payload)
       .then((response) => {

@@ -1,4 +1,4 @@
-export { store, persistGate } from "./store";
+export { store } from "./store";
 export {
   addCount,
   setWin,
