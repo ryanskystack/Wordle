@@ -6,9 +6,10 @@ const winSlice = createSlice({
   initialState: false,
   reducers: {
     setWin: (state, action) => action.payload,
+    resetWin: () => false,
   },
 });
 
-export const { setWin } = winSlice.actions;
+export const { setWin, resetWin } = winSlice.actions;
 
 export default winSlice.reducer;

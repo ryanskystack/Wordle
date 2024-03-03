@@ -2,10 +2,11 @@ import {
   addCount,
   resetWin,
   resetGuess,
+  addTry,
   resetTry,
   addGuess,
   deleteGuess,
-} from "./slices";
+} from "../store/slices";
 
 import { useRef, useEffect } from "react";
 
