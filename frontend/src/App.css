@@ -32,7 +32,128 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.header h1 {
+  padding-left: 80px;
+}
+
+/* 
+    Style override for the Virtual Keyboard 
+*/
+
+.virtual-key-row {
+  height: 60px;
+  margin: 10px;
+}
+
+
+.virtual-key-row button {
+  height: 100%;
+  width: 47px;
+  margin-left: 5px;
+  border-radius: 4px;
+  background-color: #d3d6da;
+  font-weight: bold;
+  border: 0;
+}
+
+.virtual-key-row button:hover {
+  background-color: gray;
+  color: white
+}
+
+#ENTERbutton,
+#DELbutton {
+  width: 70px;
+}
+
+
+button.virtual-key {
+  /* min-width: 50px !important; */
+  /*width: 40px;*/
+}
+
+#midRow button.virtual-key {
+  /* min-width: 55px !important; */
+}
+
+#bottom button.virtual-key {
+  /* min-width: 62px !important; */
+}
+
+.MuiGrid-container {
+  max-width: 750px !important;
+}
+
+/**
+    Style for the InputBox flip effect
+*/
+.flipped {
+  transform: rotateX(180deg);
+}
+
+.flipped .Green-Box {
+  background-color: #6aaa64;
+  color: white;
+}
+
+.flipped .Gray-Box {
+  background-color: #86888a;
+  color: white;
+}
+
+.flipped .Yellow-Box {
+  background-color: #c9b458;
+  color: white;
+}
+
+.flip-card-inner {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card-back {
+  transform: rotateX(180deg);
+  display: flex;
+  justify-content: center;
+  /* background-color: green; */
+  /* color: white; */
+  /* padding-top: 10px; */
+}
+
+.flip-card-front {
+  display: flex;
+  justify-content: center;
+  /* padding-top: 10px; */
+}
+
+/**
+Style for the snackbar (notification)
+*/
+.MuiSnackbarContent-message {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.MuiSnackbar-root>div {
+  justify-content: center;
 }
