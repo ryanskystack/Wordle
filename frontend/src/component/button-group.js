@@ -73,20 +73,22 @@ const ButtonGroup = (props) => {
   };
 
   return (
-    <Grid container style={style}>
-      <Grid item xs={6} sm={6}>
-        <Button variant="outlined" onClick={analyzeHandler}>
-          {" "}
-          Analyze{" "}
-        </Button>
+    <div style={{ margin: "0 auto" }}>
+      <Grid container style={style}>
+        <Grid item xs={6} sm={6}>
+          <Button variant="outlined" onClick={analyzeHandler}>
+            {" "}
+            Analyze{" "}
+          </Button>
+        </Grid>
+        <Grid item xs={6} sm={6}>
+          <Button variant="outlined" onClick={resetHandler}>
+            {" "}
+            Reset{" "}
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item xs={6} sm={6}>
-        <Button variant="outlined" onClick={resetHandler}>
-          {" "}
-          Reset{" "}
-        </Button>
-      </Grid>
-    </Grid>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ const HeaderStyle = {
 
 const Header = (props) => {
   return (
-    <div className="Header">
+    <div className="header">
       <h1 style={HeaderStyle}>
         {" "}
         Wordle <sup style={{ fontSize: "10px" }}> unlimited </sup>{" "}

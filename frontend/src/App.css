@@ -38,7 +38,12 @@
   }
 }
 
-.Header h1 {
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.header h1 {
   padding-left: 80px;
 }
 
